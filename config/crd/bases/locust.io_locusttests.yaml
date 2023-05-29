@@ -1,0 +1,87 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.11.3
+  creationTimestamp: null
+  name: locusttests.locust.io
+spec:
+  group: locust.io
+  names:
+    kind: LocustTest
+    listKind: LocustTestList
+    plural: locusttests
+    singular: locusttest
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: LocustTest is the Schema for the locusttests API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: LocustTestSpec defines the desired state of LocustTest
+            properties:
+              autoStart:
+                default: false
+                type: boolean
+              configMap:
+                type: string
+              hostUrl:
+                type: string
+              image:
+                description: 'INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+                  Important: Run "make" to regenerate code after modifying this file
+                  NumPods    int32  `json:"numPods,omitempty"`'
+                type: string
+              numWorkers:
+                format: int32
+                type: integer
+              runTime:
+                default: 5m
+                type: string
+              secret:
+                type: string
+              spawnRate:
+                default: 3
+                format: int32
+                type: integer
+              users:
+                default: 100
+                format: int32
+                type: integer
+            required:
+            - autoStart
+            - runTime
+            - spawnRate
+            - users
+            type: object
+          status:
+            description: LocustTestStatus defines the observed state of LocustTest
+            properties:
+              deploymentHappy:
+                description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                  of cluster Important: Run "make" to regenerate code after modifying
+                  this file'
+                type: boolean
+              podsHappy:
+                type: boolean
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

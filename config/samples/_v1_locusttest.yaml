@@ -1,0 +1,20 @@
+apiVersion: locust.io/v1
+kind: LocustTest
+metadata:
+  labels:
+    app.kubernetes.io/name: locusttest
+    app.kubernetes.io/instance: locusttest-sample
+    app.kubernetes.io/part-of: test
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: test
+  name: locusttest-sample
+spec:
+  numWorkers: 3
+  image: locustio/locust:2.15.1
+  hostUrl: https://example.com
+  configMap: example-locustfile
+  secret: example-locust-secret
+  users: 100
+  spawnRate: 3 
+  runTime: 5m
+  autoStart: true
