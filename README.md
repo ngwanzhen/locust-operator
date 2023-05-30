@@ -13,11 +13,17 @@ Locust Operator for Kubernetes
 make deploy-helm
 ```
 
-### Running Locust on the cluster
+### Running Locust in the cluster
 1. Install Instances of Custom Resources:
 
 ```sh
 kubectl apply -f config/samples/
+```
+### Cleanup Locust Resources when Load test is completed
+1. Install Instances of Custom Resources:
+
+```sh
+kubectl delete locusttest/locusttest-sample  
 ```
 
 ### Uninstall CRDs
@@ -29,10 +35,10 @@ helm uninstall locust-operator
 
 
 ### How it works
-This was built using Kubebuilder, following the Operator pattern.
-Helm charts are stored under /chart.
-Feel free to make a PR for additional features.
-More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
+* This was built using Kubebuilder, following the Operator pattern.
+* Helm charts are stored under /chart
+* Feel free to make a PR for additional features
+* More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
 
 ## License
 
