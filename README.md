@@ -1,88 +1,38 @@
-# test
-// TODO(user): Add simple overview of use/purpose
+### About
+Locust Operator for Kubernetes
 
-## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+### Features
+* Write your own Locust File and deploy as a ConfigMap in your cluster
+* Deploy a LocustTest Custom Resource and watch your Locust Master / Workers spin up
+* Port forward to Service in cluster to access the Locust UI
+* Supports Secret Mounting
+* Supports additional Python package required on top of Locust
 
-## Getting Started
-You’ll need a Kubernetes cluster to run against. You can use [KIND](https://sigs.k8s.io/kind) to get a local cluster for testing, or run against a remote cluster.
-**Note:** Your controller will automatically use the current context in your kubeconfig file (i.e. whatever cluster `kubectl cluster-info` shows).
+## Installation of Operator using Helm
+```
+make deploy-helm
+```
 
-### Running on the cluster
+### Running Locust on the cluster
 1. Install Instances of Custom Resources:
 
 ```sh
 kubectl apply -f config/samples/
 ```
 
-2. Build and push your image to the location specified by `IMG`:
-
-```sh
-make docker-build docker-push IMG=<some-registry>/test:tag
-```
-
-3a. Deploy the controller to the cluster with the image specified by `IMG`:
-
-```sh
-make deploy IMG=<some-registry>/test:tag
-```
-
-3b. Deploy the controller to the cluster using Helm:
-
-```sh
-make helm
-make deploy-helm
-```
-
 ### Uninstall CRDs
 To delete the CRDs from the cluster:
 
 ```sh
-make uninstall
+helm uninstall locust-operator
 ```
 
-### Undeploy controller
-UnDeploy the controller from the cluster:
-
-```sh
-make undeploy
-```
-
-## Contributing
-// TODO(user): Add detailed information on how you would like others to contribute to this project
 
 ### How it works
-This project aims to follow the Kubernetes [Operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/).
-
-It uses [Controllers](https://kubernetes.io/docs/concepts/architecture/controller/),
-which provide a reconcile function responsible for synchronizing resources until the desired state is reached on the cluster.
-
-### Test It Out
-1. Install the CRDs into the cluster:
-
-```sh
-make install
-```
-
-2. Run your controller (this will run in the foreground, so switch to a new terminal if you want to leave it running):
-
-```sh
-make run
-```
-
-**NOTE:** You can also run this in one step by running: `make install run`
-
-### Modifying the API definitions
-If you are editing the API definitions, generate the manifests such as CRs or CRDs using:
-
-```sh
-make manifests
-```
-
-**NOTE:** Run `make --help` for more information on all potential `make` targets
-
+This was built using Kubebuilder, following the Operator pattern.
+Helm charts are stored under /chart.
+Feel free to make a PR for additional features.
 More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
-
 
 ## License
 

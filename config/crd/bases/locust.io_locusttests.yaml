@@ -55,6 +55,8 @@ spec:
                 type: string
               secret:
                 type: string
+              secretPath:
+                type: string
               spawnRate:
                 default: 3
                 format: int32
