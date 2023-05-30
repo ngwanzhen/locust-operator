@@ -1,0 +1,2 @@
+FROM locustio/locust:2.15.1
+RUN pip install requests

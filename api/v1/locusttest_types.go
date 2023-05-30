@@ -31,6 +31,7 @@ type LocustTestSpec struct {
 	Image      string `json:"image,omitempty"`
 	ConfigMap  string `json:"configMap,omitempty"`
 	Secret     string `json:"secret,omitempty"`
+	SecretPath string `json:"secretPath,omitempty"`
 	HostUrl    string `json:"hostUrl,omitempty"`
 	NumWorkers int32  `json:"numWorkers,omitempty"`
 	// +kubebuilder:default=100

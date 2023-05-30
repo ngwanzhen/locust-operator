@@ -255,7 +255,7 @@ func (r *LocustTestReconciler) deploymentForLocust(cr *locustiov1.LocustTest) *a
 							},
 							{
 								Name:      "locustsecret",
-								MountPath: "/credentials",
+								MountPath: cr.Spec.SecretPath,
 							},
 						},
 					}},
@@ -317,7 +317,7 @@ func (r *LocustTestReconciler) deploymentForLocustSlaves(cr *locustiov1.LocustTe
 							},
 							{
 								Name:      "locustsecret",
-								MountPath: "/credentials",
+								MountPath: cr.Spec.SecretPath,
 							},
 						},
 					}},

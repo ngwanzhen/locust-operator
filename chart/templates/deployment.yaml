@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: {{ include "chart.fullname" . }}-controller-manager
+  namespace: {{ .Values.controllerManager.namespace }}
   labels:
     app.kubernetes.io/component: rbac
     app.kubernetes.io/created-by: test
@@ -12,6 +13,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "chart.fullname" . }}-controller-manager
+  namespace: {{ .Values.controllerManager.namespace }}
   labels:
     app.kubernetes.io/component: manager
     app.kubernetes.io/created-by: test
@@ -48,6 +50,9 @@ spec:
                 operator: In
                 values:
                 - linux
+        {{- with .Values.affinity }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
       containers:
       - args: {{- toYaml .Values.controllerManager.kubeRbacProxy.args | nindent 8 }}
         env:
@@ -93,3 +98,10 @@ spec:
         runAsNonRoot: true
       serviceAccountName: {{ include "chart.fullname" . }}-controller-manager
       terminationGracePeriodSeconds: 10
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

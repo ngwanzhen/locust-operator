@@ -10,10 +10,12 @@ metadata:
   name: locusttest-sample
 spec:
   numWorkers: 3
-  image: locustio/locust:2.15.1
+  image: ngwanzhen/locust-custom 
+  # image: locustio/locust:2.15.1
   hostUrl: https://example.com
   configMap: example-locustfile
   secret: example-locust-secret
+  secretPath: credentials/
   users: 100
   spawnRate: 3 
   runTime: 5m

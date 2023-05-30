@@ -2,6 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: {{ include "chart.fullname" . }}-leader-election-role
+  namespace: {{ .Values.controllerManager.namespace }}
   labels:
     app.kubernetes.io/component: rbac
     app.kubernetes.io/created-by: test
@@ -44,6 +45,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: {{ include "chart.fullname" . }}-leader-election-rolebinding
+  namespace: {{ .Values.controllerManager.namespace }}
   labels:
     app.kubernetes.io/component: rbac
     app.kubernetes.io/created-by: test
